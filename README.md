@@ -8,7 +8,7 @@ Final Project for Mobile Programming I
   - [ ] favorite_recipes
   - [ ] view_recipes
 - [ ] Back-end
-  - [ ] AddRecipe
+  - [X] AddRecipe
     - [X] Functionality
   - [ ] ViewRecipes
     - [X] ListView
