@@ -14,7 +14,7 @@ Final Project for Mobile Programming I
     - [X] ListView
     - [ ] onClick Functionality
   - [ ] FavoriteRecipes
-    - [ ] ListView
+    - [X] ListView – for testing
     - [ ] onClick Functionality
        
 ## Optional
