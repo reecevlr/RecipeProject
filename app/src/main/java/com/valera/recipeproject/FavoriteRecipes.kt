@@ -23,34 +23,4 @@ class FavoriteRecipes : AppCompatActivity() {
         val i = Intent(this, MainActivity :: class.java)
         startActivity(i)
     }
-
-    private fun viewFavoriteRecipes() {
-        val databaseHandler = DatabaseHandler(this)
-
-        val recipe: List<RecipeModelClass> = databaseHandler.viewRecipe()
-        val recipeArrayName = Array(recipe.size) {"null"}
-        val recipeArrayFavorite = Array(recipe.size) {false}
-
-        var index = 0
-
-        for (r in recipe) {
-            // Verify if recipe is favorite
-            if (!r.favorite) {
-                index++
-            }
-            else {
-                recipeArrayName[index] = r.name
-                recipeArrayFavorite[index] = r.favorite
-
-                index++
-            }
-        }
-
-        val listView =
-            findViewById<ListView>(R.id.listView)
-        val listAdapter =
-            ListAdapter(this, recipeArrayName, recipeArrayFavorite)
-
-        listView.adapter = listAdapter
-    }
 }
