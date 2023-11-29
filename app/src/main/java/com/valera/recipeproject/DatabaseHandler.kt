@@ -60,6 +60,57 @@ class DatabaseHandler(context: Context):
     }
 
     @SuppressLint("Range")
+    fun getRecipeById(id: Int): RecipeModelClass? {
+        val db = this.readableDatabase
+        val cursor:Cursor?
+        var recipe:RecipeModelClass? = null
+
+        try {
+            cursor = db.query(
+                TABLE_RECIPES,
+                arrayOf(
+                    COLUMN_ID,
+                    COLUMN_NAME,
+                    COLUMN_INGREDIENTS,
+                    COLUMN_INSTRUCTIONS,
+                    COLUMN_FAVORITE
+                ),
+                "$COLUMN_ID = ?",
+                arrayOf(id.toString()),
+                null,
+                null,
+                null,
+                null
+            )
+
+            cursor?.let {
+                if (it.moveToFirst()) {
+                    val recipeId =
+                        it.getInt(it.getColumnIndex(COLUMN_ID))
+                    val name =
+                        it.getString(it.getColumnIndex(COLUMN_NAME))
+                    val ingredients =
+                        it.getString(it.getColumnIndex(COLUMN_INGREDIENTS)).split("\n")
+                    val instructions =
+                        it.getString(it.getColumnIndex(COLUMN_INSTRUCTIONS))
+                    val favorite =
+                        it.getInt(it.getColumnIndex(COLUMN_FAVORITE)) == 1
+
+                    recipe = RecipeModelClass(recipeId, name, ingredients, instructions, favorite)
+                }
+
+                it.close()
+            }
+        }
+        catch (e: SQLiteException) {
+            db.execSQL(createTableQuery)
+            return null
+        }
+
+        return recipe
+    }
+
+    @SuppressLint("Range")
     fun viewRecipe(): List<RecipeModelClass> {
         val recipeList: ArrayList<RecipeModelClass> = ArrayList()
         val selectQuery = "SELECT * FROM $TABLE_RECIPES"
