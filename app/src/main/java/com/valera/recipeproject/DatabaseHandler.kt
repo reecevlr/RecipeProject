@@ -102,7 +102,29 @@ class DatabaseHandler(context: Context):
         }
         return recipeList
     }
-    // TODO: Add favorite functionality
+
+    fun updateFavoriteStatus(recipeId: Int, newFavoriteStatus: Boolean) {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+
+        contentValues.put(
+            COLUMN_FAVORITE,
+            if (newFavoriteStatus) {
+                1
+            }
+            else {
+                0
+            }
+        )
+
+        db.update(
+            TABLE_RECIPES,
+            contentValues,
+            "${COLUMN_ID}=?",
+            arrayOf(recipeId.toString())
+        )
+        db.close()
+    }
 
     // TODO: <?> Add update and delete functionalities 
 }
