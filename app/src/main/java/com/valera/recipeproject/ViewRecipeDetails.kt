@@ -29,6 +29,7 @@ class ViewRecipeDetails : AppCompatActivity() {
         tvInstructions = findViewById(R.id.tvInstructions)
         imgFavorite = findViewById<ImageView>(R.id.imgFavorite)
 
+        val imgEditName = findViewById<ImageView>(R.id.imgEditName)
         val imgEditIng = findViewById<ImageView>(R.id.imgEditIngredients)
         val imgEditInstr = findViewById<ImageView>(R.id.imgEditInstructions)
 
@@ -39,7 +40,11 @@ class ViewRecipeDetails : AppCompatActivity() {
         recipeId = intent.getIntExtra("recipeId", 0)
 
         loadRecipeDetails(recipeId)
-        
+
+        imgEditName.setOnClickListener {
+            showEditNameDialog()
+        }
+
         imgEditIng.setOnClickListener {
             showEditIngredientsDialog()
         }
@@ -154,6 +159,33 @@ class ViewRecipeDetails : AppCompatActivity() {
 
             val databaseHandler = DatabaseHandler(this)
             databaseHandler.updateInstructions(recipeId, newInstructions)
+
+            loadRecipeDetails(recipeId)
+        }
+
+        dialogBuilder.setNegativeButton("Cancel") { dialogInterface, _ ->
+            dialogInterface.dismiss()
+        }
+
+        val editIngredientsDialog = dialogBuilder.create()
+        editIngredientsDialog.show()
+    }
+
+    private fun showEditNameDialog() {
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.edit_name, null)
+
+        val etEditName = dialogView.findViewById<EditText>(R.id.etEditName)
+
+        dialogBuilder.setView(dialogView)
+        dialogBuilder.setTitle("Edit Recipe Name")
+
+        dialogBuilder.setPositiveButton("Save") { _, _ ->
+            val newName = etEditName.text.toString()
+
+            val databaseHandler = DatabaseHandler(this)
+            databaseHandler.updateName(recipeId, newName)
 
             loadRecipeDetails(recipeId)
         }
