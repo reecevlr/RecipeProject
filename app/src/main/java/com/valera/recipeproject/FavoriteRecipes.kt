@@ -54,6 +54,11 @@ class FavoriteRecipes : AppCompatActivity() {
             // Reflect changes to array
             recipeArrayFavorite[position] = newFavoriteStatus
             listAdapter.notifyDataSetChanged()
+
+            // Reflect changes to listView in real-time
+            if (!newFavoriteStatus) {
+                viewFavoriteRecipes()
+            }
         }
 
         listView.adapter = listAdapter
