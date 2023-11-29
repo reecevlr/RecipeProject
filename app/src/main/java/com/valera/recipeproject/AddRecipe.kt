@@ -35,8 +35,8 @@ class AddRecipe : AppCompatActivity() {
         val recipeInstructions = findViewById<EditText>(R.id.etRecipeInstructions)
 
         val name = recipeName.text.toString()
-        val ingredients = recipeName.text.toString()
-        val instructions = recipeName.text.toString()
+        val ingredients = recipeIngredients.text.toString()
+        val instructions = recipeInstructions.text.toString()
 
         val databaseHandler = DatabaseHandler(this)
 
