@@ -22,7 +22,7 @@
         <ListView
             android:id="@+id/listView"
             android:layout_width="match_parent"
-            android:layout_height="564dp" />
+            android:layout_height="565dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
