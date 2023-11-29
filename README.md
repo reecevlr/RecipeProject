@@ -10,11 +10,11 @@ Final Project for Mobile Programming I
 - [ ] Back-end
   - [X] AddRecipe
     - [X] Functionality
-  - [ ] ViewRecipes
+  - [X] ViewRecipes
     - [X] ListView
     - [X] onClick Functionality
   - [ ] FavoriteRecipes
-    - [X] ListView – for testing
+    - [ ] ListView
     - [ ] onClick Functionality
        
 ## Optional
