@@ -125,6 +125,29 @@ class ViewRecipeDetails : AppCompatActivity() {
     }
 
     private fun showEditInstructionsDialog() {
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.edit_instructions, null)
 
+        val etEditInstructions = dialogView.findViewById<EditText>(R.id.etEditInstructions)
+
+        dialogBuilder.setView(dialogView)
+        dialogBuilder.setTitle("Edit Instructions")
+
+        dialogBuilder.setPositiveButton("Save") { _, _ ->
+            val newInstructions = etEditInstructions.text.toString()
+
+            val databaseHandler = DatabaseHandler(this)
+            databaseHandler.updateInstructions(recipeId, newInstructions)
+
+            loadRecipeDetails(recipeId)
+        }
+
+        dialogBuilder.setNegativeButton("Cancel") { dialogInterface, _ ->
+            dialogInterface.dismiss()
+        }
+
+        val editIngredientsDialog = dialogBuilder.create()
+        editIngredientsDialog.show()
     }
 }
