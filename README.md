@@ -13,7 +13,7 @@ Final Project for Mobile Programming I
   - [X] ViewRecipes
     - [X] ListView
     - [X] onClick Favorite
-    - [ ] onClick View 
+    - [X] onClick View
   - [ ] FavoriteRecipes
     - [X] ListView
     - [X] onClick Favorite
