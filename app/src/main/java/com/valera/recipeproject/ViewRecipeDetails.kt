@@ -1,12 +1,8 @@
 package com.valera.recipeproject
 
-import android.app.Dialog
-import android.content.DialogInterface
 import android.content.Intent
+import android.media.Image
 import android.os.Bundle
-import android.provider.ContactsContract.Data
-import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -19,6 +15,7 @@ class ViewRecipeDetails : AppCompatActivity() {
     private lateinit var tvName: TextView
     private lateinit var tvIngredients: TextView
     private lateinit var tvInstructions: TextView
+    private lateinit var imgFavorite: ImageView
 
     // Track current Recipe ID
     private var recipeId: Int = 0
@@ -30,6 +27,7 @@ class ViewRecipeDetails : AppCompatActivity() {
         tvName = findViewById(R.id.tvName)
         tvIngredients = findViewById(R.id.tvIngredients)
         tvInstructions = findViewById(R.id.tvInstructions)
+        imgFavorite = findViewById<ImageView>(R.id.imgFavorite)
 
         val imgEditIng = findViewById<ImageView>(R.id.imgEditIngredients)
         val imgEditInstr = findViewById<ImageView>(R.id.imgEditInstructions)
@@ -48,6 +46,10 @@ class ViewRecipeDetails : AppCompatActivity() {
         
         imgEditInstr.setOnClickListener {
             showEditInstructionsDialog()
+        }
+
+        imgFavorite.setOnClickListener {
+            updateFavoriteStatus()
         }
 
         btnReturn.setOnClickListener {
@@ -86,6 +88,11 @@ class ViewRecipeDetails : AppCompatActivity() {
         tvName.text = recipe?.name?: ""
         tvIngredients.text = recipe?.ingredients?.joinToString("\n")?: ""
         tvInstructions.text = recipe?.instructions?: ""
+
+        imgFavorite.setImageResource(
+            if (recipe?.favorite == true) R.drawable.heart_minus
+            else R.drawable.heart_plus
+        )
     }
 
     private fun showDeleteDialog() {
@@ -157,5 +164,14 @@ class ViewRecipeDetails : AppCompatActivity() {
 
         val editIngredientsDialog = dialogBuilder.create()
         editIngredientsDialog.show()
+    }
+
+    private fun updateFavoriteStatus() {
+        val databaseHandler = DatabaseHandler(this)
+        val newFavoriteStatus = !databaseHandler.getRecipeById(recipeId)?.favorite!!
+
+        databaseHandler.updateFavoriteStatus(recipeId, newFavoriteStatus)
+
+        loadRecipeDetails(recipeId)
     }
 }
