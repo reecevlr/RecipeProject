@@ -52,13 +52,20 @@ class ViewRecipeDetails : AppCompatActivity() {
         }
 
         btnDelete.setOnClickListener {
-            // TODO: Delete dialog box functionality
+            showDeleteDialog()
         }
     }
     /* Functions */
     private fun startViewRecipes() {
         val i = Intent(this, ViewRecipes :: class.java)
         startActivity(i)
+    }
+
+    private fun deleteRecipe(recipeId: Int) {
+        val databaseHandler = DatabaseHandler(this)
+
+        databaseHandler.deleteRecipe(recipeId)
+        startViewRecipes()
     }
 
     private fun loadRecipeDetails(recipeId: Int) {
@@ -68,5 +75,22 @@ class ViewRecipeDetails : AppCompatActivity() {
         tvName.text = recipe?.name?: ""
         tvIngredients.text = recipe?.ingredients?.joinToString("\n")?: ""
         tvInstructions.text = recipe?.instructions?: ""
+    }
+
+    private fun showDeleteDialog() {
+        val dialogBuilder = AlertDialog.Builder(this)
+
+        dialogBuilder.setTitle("Delete Recipe?")
+        dialogBuilder.setMessage("This will permanently delete the current recipe.\n\nAre you sure?")
+
+        dialogBuilder.setPositiveButton("Delete") {_, _ ->
+            deleteRecipe(recipeId)
+        }
+        dialogBuilder.setNegativeButton("Cancel") {dialogInterface, _ ->
+            dialogInterface.dismiss()
+        }
+
+        val deleteDialog = dialogBuilder.create()
+        deleteDialog.show()
     }
 }
