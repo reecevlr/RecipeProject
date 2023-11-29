@@ -58,7 +58,7 @@ class ViewRecipes : AppCompatActivity() {
                 // Update favorite status in database
                 databaseHandler.updateFavoriteStatus(recipeId, newFavoriteStatus)
 
-                // Reflect change in db to array
+                // Reflect changes to array
                 recipeArrayFavorite[position] = newFavoriteStatus
                 listAdapter.notifyDataSetChanged()
             }
