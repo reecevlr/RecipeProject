@@ -4,8 +4,11 @@ import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.provider.ContactsContract.Data
+import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -40,11 +43,11 @@ class ViewRecipeDetails : AppCompatActivity() {
         loadRecipeDetails(recipeId)
         
         imgEditIng.setOnClickListener {
-            // TODO: Update recipe ingredients functionality
+            showEditIngredientsDialog()
         }
         
         imgEditInstr.setOnClickListener {
-            // TODO: Update recipe instructions functionality
+            showEditInstructionsDialog()
         }
 
         btnReturn.setOnClickListener {
@@ -92,5 +95,36 @@ class ViewRecipeDetails : AppCompatActivity() {
 
         val deleteDialog = dialogBuilder.create()
         deleteDialog.show()
+    }
+
+    private fun showEditIngredientsDialog() {
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.edit_ingredients, null)
+
+        val etEditIngredients = dialogView.findViewById<EditText>(R.id.etEditIngredients)
+
+        dialogBuilder.setView(dialogView)
+        dialogBuilder.setTitle("Edit Ingredients")
+
+        dialogBuilder.setPositiveButton("Save") { _, _ ->
+            val newIngredients = etEditIngredients.text.toString()
+
+            val databaseHandler = DatabaseHandler(this)
+            databaseHandler.updateIngredients(recipeId, newIngredients)
+
+            loadRecipeDetails(recipeId)
+        }
+
+        dialogBuilder.setNegativeButton("Cancel") { dialogInterface, _ ->
+            dialogInterface.dismiss()
+        }
+
+        val editIngredientsDialog = dialogBuilder.create()
+        editIngredientsDialog.show()
+    }
+
+    private fun showEditInstructionsDialog() {
+
     }
 }
