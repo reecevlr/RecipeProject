@@ -43,7 +43,7 @@ class AddRecipe : AppCompatActivity() {
         if (isValid(name, ingredients, instructions)) {
             val status =
                 databaseHandler
-                    .addRecipe(RecipeModelClass(name, ingredients.lines(), instructions))
+                    .addRecipe(RecipeModelClass(null, name, ingredients.lines(), instructions))
 
             if (status > -1) {
                 Toast
