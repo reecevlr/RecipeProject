@@ -11,7 +11,8 @@ import android.widget.TextView
 class ListAdapter(
         private val context: Activity,
         private val recipeName: Array<String>,
-        private val recipeFavorite: Array<Boolean>
+        private val recipeFavorite: Array<Boolean>,
+        private val onFavoriteClickListener: (Int) -> Unit
     )
     : ArrayAdapter<String>(context, R.layout.custom_list, recipeName)
 {
@@ -28,6 +29,11 @@ class ListAdapter(
             if (recipeFavorite[position]) R.drawable.heart_minus
             else R.drawable.heart_plus
         )
+
+        // Click listener for ImageView
+        recipeFavoriteImg.setOnClickListener {
+            onFavoriteClickListener.invoke(position)
+        }
 
         return rowView
     }
