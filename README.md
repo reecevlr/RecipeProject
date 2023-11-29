@@ -7,7 +7,9 @@ Final Project for Mobile Programming I
   - [ ] add_recipe
   - [ ] favorite_recipes
   - [ ] view_recipes
+
 - [ ] Back-end
+  - [ ] Featured Page
   - [X] AddRecipe
     - [X] Functionality
   - [X] ViewRecipes
@@ -15,17 +17,24 @@ Final Project for Mobile Programming I
     - [X] onClick Favorite
     - [X] onClick View
     - [X] Update recipe
+      - [X] Name
       - [X] Ingredients
       - [X] Instructions
-  - [ ] FavoriteRecipes
+      - [X] Favorite
+  - [X] FavoriteRecipes
     - [X] ListView
     - [X] onClick Favorite
-    - [ ] onClick View 
+    - [X] onClick View
+    - [X] Update recipe
+      - [X] Name
+      - [X] Ingredients
+      - [X] Instructions
+      - [X] Favorite
        
 ## Optional
 - [ ] Front-end
   - [ ] Add images for recipes
-  - [ ] Convert ListView to RecyclerView
+  - [X] Convert ListView to RecyclerView (Nope hahaha)
 - [ ] Functionality
   - [X] Delete recipe
     - [ ] Cannot delete favorite recipes
