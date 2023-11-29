@@ -191,5 +191,35 @@ class DatabaseHandler(context: Context):
         db.close()
     }
 
-    // TODO: <?> Add update and delete functionalities 
+    fun updateIngredients(recipeId: Int, newIngredients: String) {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+
+        contentValues.put(COLUMN_INGREDIENTS, newIngredients)
+
+        db.update(
+            TABLE_RECIPES,
+            contentValues,
+            "$COLUMN_ID=?",
+            arrayOf(recipeId.toString())
+        )
+
+        db.close()
+    }
+
+    fun updateInstructions(recipeId: Int, newInstructions: String) {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+
+        contentValues.put(COLUMN_INGREDIENTS, newInstructions)
+
+        db.update(
+            TABLE_RECIPES,
+            contentValues,
+            "$COLUMN_ID=?",
+            arrayOf(recipeId.toString())
+        )
+
+        db.close()
+    }
 }
