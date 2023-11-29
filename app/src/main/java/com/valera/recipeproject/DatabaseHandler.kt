@@ -22,7 +22,7 @@ class DatabaseHandler(context: Context):
         const val COLUMN_NAME = "name"
         const val COLUMN_INGREDIENTS = "ingredients"
         const val COLUMN_INSTRUCTIONS = "instructions"
-        const val COLUMN_FAVORITE = "liked"
+        const val COLUMN_FAVORITE = "favorite"
     }
 
     private val createTableQuery =
@@ -44,7 +44,7 @@ class DatabaseHandler(context: Context):
     }
 
     /* Functions */
-    fun addRecipe(recipe: RecipeModelClass): Long {
+    fun addRecipe(recipe: RecipeModelClass): Int {
         val db = this.writableDatabase
         val contentValues = ContentValues()
 
@@ -53,10 +53,10 @@ class DatabaseHandler(context: Context):
         contentValues.put(COLUMN_INSTRUCTIONS, recipe.instructions)
         contentValues.put(COLUMN_FAVORITE, recipe.favorite)
 
-        val success = db.insert(TABLE_RECIPES, null, contentValues)
+        val id = db.insert(TABLE_RECIPES, null, contentValues).toInt()
         db.close()
 
-        return success
+        return id
     }
 
     @SuppressLint("Range")
@@ -67,6 +67,7 @@ class DatabaseHandler(context: Context):
         val db = this.readableDatabase
         var cursor: Cursor? = null
 
+        var recipeId: Int
         var recipeName: String
         var recipeIngredients: List<String>
         var recipeInstructions: String
@@ -82,12 +83,14 @@ class DatabaseHandler(context: Context):
 
         if (cursor.moveToFirst()) {
             do {
-                recipeName = cursor.getString(cursor.getColumnIndex("name"))
-                recipeIngredients = cursor.getString(cursor.getColumnIndex("ingredients")).split("\n")
-                recipeInstructions = cursor.getString(cursor.getColumnIndex("instructions"))
-                recipeFavorite = cursor.getInt(cursor.getColumnIndex("liked"))
+                recipeId = cursor.getInt(cursor.getColumnIndex(COLUMN_ID))
+                recipeName = cursor.getString(cursor.getColumnIndex(COLUMN_NAME))
+                recipeIngredients = cursor.getString(cursor.getColumnIndex(COLUMN_INGREDIENTS)).split("\n")
+                recipeInstructions = cursor.getString(cursor.getColumnIndex(COLUMN_INSTRUCTIONS))
+                recipeFavorite = cursor.getInt(cursor.getColumnIndex(COLUMN_FAVORITE))
 
                 val recipe = RecipeModelClass(
+                    id = recipeId,
                     name = recipeName,
                     ingredients = recipeIngredients,
                     instructions = recipeInstructions,
