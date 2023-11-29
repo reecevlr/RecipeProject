@@ -28,7 +28,7 @@ class ViewRecipes : AppCompatActivity() {
         listView.setOnItemClickListener { _, _, position, _ ->
             // Get the recipe ID based on the clicked position
             val recipeId = recipeArrayId[position]
-            
+
             val intent = Intent(this, ViewRecipeDetails::class.java)
             intent.putExtra("recipeId", recipeId)
 
