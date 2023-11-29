@@ -211,7 +211,7 @@ class DatabaseHandler(context: Context):
         val db = this.writableDatabase
         val contentValues = ContentValues()
 
-        contentValues.put(COLUMN_INGREDIENTS, newInstructions)
+        contentValues.put(COLUMN_INSTRUCTIONS, newInstructions)
 
         db.update(
             TABLE_RECIPES,
