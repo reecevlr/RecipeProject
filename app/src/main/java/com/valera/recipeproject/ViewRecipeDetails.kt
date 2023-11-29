@@ -60,8 +60,16 @@ class ViewRecipeDetails : AppCompatActivity() {
     }
     /* Functions */
     private fun startViewRecipes() {
-        val i = Intent(this, ViewRecipes :: class.java)
-        startActivity(i)
+        val origin = intent.getStringExtra("origin")
+
+        if (origin.equals("ViewRecipes")) {
+            val i = Intent(this, ViewRecipes :: class.java)
+            startActivity(i)
+        }
+        else {
+            val i = Intent(this, FavoriteRecipes :: class.java)
+            startActivity(i)
+        }
     }
 
     private fun deleteRecipe(recipeId: Int) {
