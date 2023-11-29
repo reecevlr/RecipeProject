@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 class FavoriteRecipes : AppCompatActivity() {
 
     private lateinit var listAdapter: ListAdapter
+    private lateinit var recipeArrayId: Array<Int>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,9 +18,21 @@ class FavoriteRecipes : AppCompatActivity() {
         viewFavoriteRecipes()
 
         val btnReturn = findViewById<Button>(R.id.btnReturn)
+        val listView = findViewById<ListView>(R.id.listView)
 
         btnReturn.setOnClickListener {
             startMainActivity()
+        }
+
+        listView.setOnItemClickListener { _, _, position, _ ->
+            // Get the recipe ID based on the clicked position
+            val recipeId = recipeArrayId[position]
+
+            val intent = Intent(this, ViewRecipeDetails::class.java)
+            intent.putExtra("recipeId", recipeId)
+            intent.putExtra("origin", "FavoriteRecipes")
+
+            startActivity(intent)
         }
     }
 
@@ -37,7 +50,7 @@ class FavoriteRecipes : AppCompatActivity() {
         // Filter recipes by favorite only
         val favoriteRecipes = allRecipes.filter { it.favorite }
 
-        val recipeArrayId = favoriteRecipes.map { it.id ?: 0}.toTypedArray()
+        recipeArrayId = favoriteRecipes.map { it.id ?: 0}.toTypedArray()
         val recipeArrayName = favoriteRecipes.map { it.name }.toTypedArray()
         val recipeArrayFavorite = favoriteRecipes.map { it.favorite }.toTypedArray()
 
