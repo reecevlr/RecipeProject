@@ -59,6 +59,19 @@ class DatabaseHandler(context: Context):
         return id
     }
 
+    fun deleteRecipe(recipeId: Int): Int {
+        val db = this.writableDatabase
+        val success =
+            db.delete(
+                TABLE_RECIPES,
+                "$COLUMN_ID=?",
+                arrayOf(recipeId.toString())
+            )
+
+        db.close()
+        return success
+    }
+
     @SuppressLint("Range")
     fun getRecipeById(id: Int): RecipeModelClass? {
         val db = this.readableDatabase
