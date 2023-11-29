@@ -35,7 +35,7 @@ class DatabaseHandler(context: Context):
         ")"
 
     override fun onCreate(db: SQLiteDatabase) {
-        db?.execSQL(createTableQuery)
+        db.execSQL(createTableQuery)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
@@ -65,7 +65,7 @@ class DatabaseHandler(context: Context):
         val selectQuery = "SELECT * FROM $TABLE_RECIPES"
 
         val db = this.readableDatabase
-        var cursor: Cursor? = null
+        val cursor: Cursor?
 
         var recipeId: Int
         var recipeName: String
@@ -100,6 +100,7 @@ class DatabaseHandler(context: Context):
             }
             while (cursor.moveToNext())
         }
+        cursor.close()
         return recipeList
     }
 
