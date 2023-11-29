@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 class ViewRecipes : AppCompatActivity() {
 
     private lateinit var listAdapter: ListAdapter
+    private lateinit var recipeArrayId: Array<Int>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,9 +18,21 @@ class ViewRecipes : AppCompatActivity() {
         viewRecipes()
 
         val btnReturn = findViewById<Button>(R.id.btnReturn)
+        val listView = findViewById<ListView>(R.id.listView)
 
         btnReturn.setOnClickListener {
             startMainActivity()
+        }
+
+        // Set an OnItemClickListener for the ListView
+        listView.setOnItemClickListener { _, _, position, _ ->
+            // Get the recipe ID based on the clicked position
+            val recipeId = recipeArrayId[position]
+            
+            val intent = Intent(this, ViewRecipeDetails::class.java)
+            intent.putExtra("recipeId", recipeId)
+
+            startActivity(intent)
         }
     }
 
@@ -33,7 +46,7 @@ class ViewRecipes : AppCompatActivity() {
         val databaseHandler = DatabaseHandler(this)
 
         val recipe: List<RecipeModelClass> = databaseHandler.viewRecipe()
-        val recipeArrayId = Array(recipe.size) {0}
+        recipeArrayId = Array(recipe.size) {0}
         val recipeArrayName = Array(recipe.size) {"null"}
         val recipeArrayFavorite = Array(recipe.size) {false}
 
