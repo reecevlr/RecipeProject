@@ -222,4 +222,20 @@ class DatabaseHandler(context: Context):
 
         db.close()
     }
+
+    fun updateName(recipeId: Int, newName: String) {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+
+        contentValues.put(COLUMN_NAME, newName)
+
+        db.update(
+            TABLE_RECIPES,
+            contentValues,
+            "$COLUMN_ID=?",
+            arrayOf(recipeId.toString())
+        )
+
+        db.close()
+    }
 }
