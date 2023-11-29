@@ -14,6 +14,9 @@ Final Project for Mobile Programming I
     - [X] ListView
     - [X] onClick Favorite
     - [X] onClick View
+    - [X] Update recipe
+      - [X] Ingredients
+      - [X] Instructions
   - [ ] FavoriteRecipes
     - [X] ListView
     - [X] onClick Favorite
@@ -24,5 +27,5 @@ Final Project for Mobile Programming I
   - [ ] Add images for recipes
   - [ ] Convert ListView to RecyclerView
 - [ ] Functionality
-  - [ ] Update recipe
-  - [ ] Delete recipe
+  - [X] Delete recipe
+    - [ ] Cannot delete favorite recipes
