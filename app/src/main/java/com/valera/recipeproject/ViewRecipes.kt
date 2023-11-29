@@ -7,6 +7,9 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 
 class ViewRecipes : AppCompatActivity() {
+
+    private lateinit var listAdapter: ListAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.view_recipes)
@@ -30,12 +33,14 @@ class ViewRecipes : AppCompatActivity() {
         val databaseHandler = DatabaseHandler(this)
 
         val recipe: List<RecipeModelClass> = databaseHandler.viewRecipe()
+        val recipeArrayId = Array(recipe.size) {0}
         val recipeArrayName = Array(recipe.size) {"null"}
         val recipeArrayFavorite = Array(recipe.size) {false}
 
         var index = 0
 
         for (r in recipe) {
+            recipeArrayId[index] = r.id!!
             recipeArrayName[index] = r.name
             recipeArrayFavorite[index] = r.favorite
 
@@ -44,8 +49,19 @@ class ViewRecipes : AppCompatActivity() {
 
         val listView =
             findViewById<ListView>(R.id.listView)
-        val listAdapter =
-            ListAdapter(this, recipeArrayName, recipeArrayFavorite)
+        listAdapter =
+            ListAdapter(this, recipeArrayName, recipeArrayFavorite) { position ->
+                // Handles favorite click
+                val recipeId = recipeArrayId[position]
+                val newFavoriteStatus = !recipeArrayFavorite[position]
+
+                // Update favorite status in database
+                databaseHandler.updateFavoriteStatus(recipeId, newFavoriteStatus)
+
+                // Reflect change in db to array
+                recipeArrayFavorite[position] = newFavoriteStatus
+                listAdapter.notifyDataSetChanged()
+            }
 
         listView.adapter = listAdapter
     }
