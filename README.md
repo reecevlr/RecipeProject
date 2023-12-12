@@ -5,9 +5,10 @@ Final Project for Mobile Programming I
 - [ ] Front-end Design
   - [X] activity_main
   - [X] add_recipe
-  - [ ] favorite_recipes
-  - [ ] view_recipes
-  - [ ] color palette
+  - [X] favorite_recipes
+  - [X] view_recipes
+  - [X] edit pages
+  - [X] color palette
   - [ ] text style
 
 - [ ] Back-end
