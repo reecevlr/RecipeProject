@@ -36,10 +36,12 @@ Final Project for Mobile Programming I
 ## Optional
 - [ ] Front-end
   - [ ] Add images for recipes
-  - [X] Convert ListView to RecyclerView (Nope hahaha)
+  - [X] Convert ListView to RecyclerView (pass!)
   - [ ] Design details
   - [ ] Layout details
 - [ ] Functionality
   - [X] Delete recipe
-    - [ ] Cannot delete favorite recipes
   - [ ] Categories(difficulty(quick, slow, average| appetizer, dinner, etc.| easy, tedious))
+  - [ ] Favorite recipes
+    - [ ] Cannot delete favorite recipes
+    - [ ] Favorite recipe page error message when there are no user favorites
