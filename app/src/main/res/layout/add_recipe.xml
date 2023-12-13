@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/md_theme_dark_inverseSurface"
     android:orientation="vertical"
     android:padding="40dp">
 
@@ -10,8 +11,10 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/merienda"
         android:gravity="center"
         android:text="Add Recipe"
+        android:textColor="@color/md_theme_dark_background"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -19,8 +22,10 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="casual"
         android:gravity="center"
         android:text="Add a new recipe here!"
+        android:textColor="@color/md_theme_dark_background"
         android:textStyle="italic" />
 
     <Space
@@ -30,6 +35,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#994428"
         android:orientation="horizontal">
 
         <TextView
@@ -37,7 +43,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/merienda"
             android:text="Name:"
+            android:textColor="@color/md_theme_light_background"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -52,6 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:ems="10"
+        android:fontFamily="sans-serif"
         android:hint="name of the recipe"
         android:inputType="text" />
 
@@ -62,6 +71,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#984428"
         android:orientation="horizontal">
 
         <TextView
@@ -69,7 +79,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/merienda"
             android:text="Ingredients:"
+            android:textColor="@color/md_theme_light_background"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -84,6 +96,7 @@
         android:layout_width="match_parent"
         android:layout_height="130dp"
         android:ems="10"
+        android:fontFamily="sans-serif"
         android:gravity="start|top"
         android:hint="ingredients needed"
         android:inputType="textMultiLine" />
@@ -95,6 +108,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#9A4428"
         android:orientation="horizontal">
 
         <TextView
@@ -102,7 +116,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/merienda"
             android:text="Instructions:"
+            android:textColor="@color/md_theme_light_background"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -117,6 +133,7 @@
         android:layout_width="match_parent"
         android:layout_height="130dp"
         android:ems="10"
+        android:fontFamily="sans-serif"
         android:gravity="start|top"
         android:hint="how to make the recipe"
         android:inputType="textMultiLine" />
@@ -138,6 +155,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
+            android:fontFamily="sans-serif"
             android:text="Cancel" />
 
         <Button
@@ -147,6 +165,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
+            android:fontFamily="sans-serif"
             android:text="Add" />
     </LinearLayout>
 </LinearLayout>

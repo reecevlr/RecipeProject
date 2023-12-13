@@ -8,7 +8,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/actualbg"
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,22 +20,26 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/md_theme_dark_secondary"
+                android:elevation="6dp"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/app_Icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_launcher_foreground" />
+                    android:layout_weight="0"
+                    app:srcCompat="@drawable/logo2t" />
 
                 <TextView
                     android:id="@+id/tvAppName"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:text="App Name"
-                    android:textSize="24sp"
+                    android:fontFamily="@font/merienda"
+                    android:text="NoteCook"
+                    android:textColor="@color/md_theme_dark_background"
+                    android:textSize="34sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -53,7 +59,12 @@
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Featured recipe:"
+                    android:background="@color/md_theme_dark_secondary"
+                    android:fontFamily="@font/merienda"
+                    android:gravity="center"
+                    android:requiresFadingEdge="none"
+                    android:text="Featured recipe"
+                    android:textColor="@color/md_theme_dark_background"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -65,14 +76,23 @@
                     android:id="@+id/tvRecipeName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/md_theme_dark_secondary"
+                    android:fontFamily="@font/merienda"
+                    android:paddingLeft="10dp"
                     android:text="Recipe name"
+                    android:textColor="@color/md_theme_dark_background"
                     android:textStyle="bold|italic" />
 
                 <TextView
                     android:id="@+id/tvDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut blandit faucibus porta. Cras nulla tortor, gravida sit amet pellentesque faucibus, fermentum sed elit. Integer hendrerit sapien blandit posuere eleifend. Sed tincidunt sollicitudin ante et tempus. Nullam vestibulum magna mi, a tincidunt quam suscipit et. Nulla congue odio luctus ornare scelerisque. Morbi sed orci ut orci porttitor gravida quis in metus." />
+                    android:background="@color/md_theme_dark_inverseSurface"
+                    android:elevation="6dp"
+                    android:fontFamily="sans-serif"
+                    android:padding="10dp"
+                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut blandit faucibus porta. Cras nulla tortor, gravida sit amet pellentesque faucibus, fermentum sed elit. Integer hendrerit sapien blandit posuere eleifend. Sed tincidunt sollicitudin ante et tempus. Nullam vestibulum magna mi, a tincidunt quam suscipit et. Nulla congue odio luctus ornare scelerisque. Morbi sed orci ut orci porttitor gravida quis in metus."
+                    android:textColor="@color/md_theme_dark_background" />
 
             </LinearLayout>
 
@@ -106,8 +126,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/md_theme_light_inversePrimary"
+            android:backgroundTint="@color/md_theme_dark_secondary"
             android:contentDescription="view recipe"
+            android:elevation="6dp"
             android:src="@drawable/view" />
 
         <ImageButton
@@ -115,8 +136,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/md_theme_dark_primary"
+            android:backgroundTint="@color/md_theme_dark_secondary"
             android:contentDescription="view fave"
+            android:elevation="6dp"
             android:src="@drawable/favorite" />
     </LinearLayout>
 

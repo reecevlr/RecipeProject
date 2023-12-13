@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/md_theme_dark_inverseSurface"
     android:orientation="vertical"
     android:padding="40dp">
 
@@ -9,6 +10,7 @@
         android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/merienda"
         android:gravity="center"
         android:text="Your Recipes"
         android:textSize="24sp"
@@ -22,7 +24,9 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="520dp" />
+        android:layout_height="520dp"
+        android:divider="@drawable/line"
+        android:dividerHeight="10dp" />
 
     <Space
         android:layout_width="match_parent"
@@ -35,5 +39,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
+        android:fontFamily="sans-serif"
         android:text="Return" />
 </LinearLayout>

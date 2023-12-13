@@ -2,14 +2,14 @@
 Final Project for Mobile Programming I
 
 ## TODO
-- [ ] Front-end Design
+- [X] Front-end Design
   - [X] activity_main
   - [X] add_recipe
   - [X] favorite_recipes
   - [X] view_recipes
   - [X] edit pages
   - [X] color palette
-  - [ ] text style
+  - [X] text style
 
 - [ ] Back-end
   - [ ] Featured Page
@@ -38,8 +38,8 @@ Final Project for Mobile Programming I
 - [ ] Front-end
   - [ ] Add images for recipes
   - [X] Convert ListView to RecyclerView (Nope hahaha)
-  - [ ] Design details
-  - [ ] Layout details
+  - [X] Design details
+  - [X] Layout details
 - [ ] Functionality
   - [X] Delete recipe
     - [ ] Cannot delete favorite recipes
