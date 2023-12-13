@@ -1,16 +1,24 @@
 package com.valera.recipeproject
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract.Data
 import android.widget.ImageButton
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        private const val KEY_FEATURED_RECIPE_INDEX = "featured_recipe_index"
+    }
+
     private lateinit var databaseHandler: DatabaseHandler
     private lateinit var allRecipes: List<RecipeModelClass>
+
+    private lateinit var tvRecipeName: TextView
+
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,15 +28,27 @@ class MainActivity : AppCompatActivity() {
         val btnView = findViewById<ImageButton>(R.id.btnViewAll)
         val btnFavorites = findViewById<ImageButton>(R.id.btnFavorites)
 
-        val tvRecipeName = findViewById<TextView>(R.id.tvRecipeName)
+        tvRecipeName = findViewById(R.id.tvRecipeName)
 
         databaseHandler = DatabaseHandler(this)
         allRecipes = databaseHandler.viewRecipe()
 
-        val featuredRecipeIndex = getFeaturedRecipe(allRecipes)
-        val featuredRecipe: RecipeModelClass = allRecipes[featuredRecipeIndex]
+        // Saved Instance => Featured Recipe resets only on app launch
+        if (savedInstanceState == null && allRecipes.isNotEmpty()) {
+            sharedPreferences = getPreferences(MODE_PRIVATE)
 
-        tvRecipeName.text = featuredRecipe.name
+            // Verify if there are recipes
+            if (allRecipes.isNotEmpty()) {
+                val featuredRecipeIndex = generateRandomIndex()
+                saveFeaturedRecipeIndex(featuredRecipeIndex)
+
+                displayFeaturedRecipe(allRecipes[featuredRecipeIndex])
+            }
+            else {
+                // Handle the case where there are no recipes
+                tvRecipeName.text = "No recipes... Create some now!"
+            }
+        }
 
         btnAdd.setOnClickListener {
             startAddRecipe()
@@ -57,15 +77,21 @@ class MainActivity : AppCompatActivity() {
         startActivity(i)
     }
 
-    private fun getFeaturedRecipe(allRecipes: List<RecipeModelClass>): Int {
-        // Verify if there are recipes in the database
-        return if (allRecipes.isNotEmpty()) {
-            // Use random index to select featured recipe
-            (allRecipes.indices).random()
+    private fun generateRandomIndex(): Int {
+        if (allRecipes.isEmpty()) {
+            return -1
+        }
+        return (allRecipes.indices).random()
+    }
 
-        }
-        else {
-            -999
-        }
+    private fun saveFeaturedRecipeIndex(featuredRecipeIndex: Int) {
+        val editor = sharedPreferences.edit()
+
+        editor.putInt(KEY_FEATURED_RECIPE_INDEX, featuredRecipeIndex)
+        editor.apply()
+    }
+
+    private fun displayFeaturedRecipe(featuredRecipe: RecipeModelClass) {
+        tvRecipeName.text = featuredRecipe.name
     }
 }
