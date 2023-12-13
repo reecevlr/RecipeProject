@@ -34,19 +34,19 @@ class MainActivity : AppCompatActivity() {
         allRecipes = databaseHandler.viewRecipe()
 
         // Saved Instance => Featured Recipe resets only on app launch
-        if (savedInstanceState == null && allRecipes.isNotEmpty()) {
+        if (savedInstanceState == null) {
             sharedPreferences = getPreferences(MODE_PRIVATE)
 
-            // Verify if there are recipes
-            if (allRecipes.isNotEmpty()) {
-                val featuredRecipeIndex = generateRandomIndex()
-                saveFeaturedRecipeIndex(featuredRecipeIndex)
+            val featuredRecipeIndex = generateRandomIndex()
 
-                displayFeaturedRecipe(allRecipes[featuredRecipeIndex])
+            if (featuredRecipeIndex == -1) {
+                tvRecipeName.text = buildString {
+                    append("No recipes... Create some now!")
+                }
             }
             else {
-                // Handle the case where there are no recipes
-                tvRecipeName.text = "No recipes... Create some now!"
+                saveFeaturedRecipeIndex(featuredRecipeIndex)
+                displayFeaturedRecipe(allRecipes[featuredRecipeIndex])
             }
         }
 
