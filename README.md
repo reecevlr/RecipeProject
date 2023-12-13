@@ -11,7 +11,7 @@ Final Project for Mobile Programming I
   - [ ] text style
 
 - [ ] Back-end
-  - [ ] Featured Page
+  - [X] Featured Page
   - [X] AddRecipe
     - [X] Functionality
   - [X] ViewRecipes
