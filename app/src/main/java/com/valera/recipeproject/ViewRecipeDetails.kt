@@ -1,7 +1,6 @@
 package com.valera.recipeproject
 
 import android.content.Intent
-import android.media.Image
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -27,7 +26,7 @@ class ViewRecipeDetails : AppCompatActivity() {
         tvName = findViewById(R.id.tvName)
         tvIngredients = findViewById(R.id.tvIngredients)
         tvInstructions = findViewById(R.id.tvInstructions)
-        imgFavorite = findViewById<ImageView>(R.id.imgFavorite)
+        imgFavorite = findViewById(R.id.imgFavorite)
 
         val imgEditName = findViewById<ImageView>(R.id.imgEditName)
         val imgEditIng = findViewById<ImageView>(R.id.imgEditIngredients)

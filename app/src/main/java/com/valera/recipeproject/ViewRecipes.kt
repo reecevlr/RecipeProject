@@ -50,14 +50,10 @@ class ViewRecipes : AppCompatActivity() {
         val recipeArrayName = Array(recipe.size) {"null"}
         val recipeArrayFavorite = Array(recipe.size) {false}
 
-        var index = 0
-
-        for (r in recipe) {
+        for ((index, r) in recipe.withIndex()) {
             recipeArrayId[index] = r.id!!
             recipeArrayName[index] = r.name
             recipeArrayFavorite[index] = r.favorite
-
-            index++
         }
 
         val listView =
