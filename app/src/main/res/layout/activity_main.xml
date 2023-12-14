@@ -59,29 +59,15 @@
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/md_theme_dark_secondary"
+                    android:background="@drawable/custom_background_headings"
                     android:fontFamily="@font/merienda"
                     android:gravity="center"
                     android:requiresFadingEdge="none"
+                    android:padding="6.5dp"
                     android:text="Featured recipe"
                     android:textColor="@color/md_theme_dark_background"
                     android:textSize="20sp"
                     android:textStyle="bold" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp" />
-
-                <TextView
-                    android:id="@+id/tvRecipeName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/md_theme_dark_secondary"
-                    android:fontFamily="@font/merienda"
-                    android:paddingLeft="10dp"
-                    android:text="Recipe name"
-                    android:textColor="@color/md_theme_dark_background"
-                    android:textStyle="bold|italic" />
 
                 <TextView
                     android:id="@+id/tvDescription"
@@ -91,7 +77,82 @@
                     android:elevation="6dp"
                     android:fontFamily="sans-serif"
                     android:padding="10dp"
-                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut blandit faucibus porta. Cras nulla tortor, gravida sit amet pellentesque faucibus, fermentum sed elit. Integer hendrerit sapien blandit posuere eleifend. Sed tincidunt sollicitudin ante et tempus. Nullam vestibulum magna mi, a tincidunt quam suscipit et. Nulla congue odio luctus ornare scelerisque. Morbi sed orci ut orci porttitor gravida quis in metus."
+                    android:text="Discover a new recipe today. Explore NoteCook now!"
+                    android:textSize="16sp"
+                    android:textStyle="italic"
+                    android:textColor="@color/md_theme_dark_background" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp" />
+
+                <TextView
+                    android:id="@+id/tvRecipeName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_background_subheadings"
+                    android:fontFamily="@font/merienda"
+                    android:gravity="center"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Recipe name"
+                    android:textSize="18sp"
+                    android:textColor="@color/md_theme_dark_background"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_background_subheadings"
+                    android:fontFamily="@font/merienda"
+                    android:gravity="center"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Ingredients"
+                    android:textSize="16sp"
+                    android:textColor="@color/md_theme_dark_background"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/tvRecipeIngredients"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/md_theme_dark_inverseSurface"
+                    android:elevation="6dp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:textSize="14sp"
+                    android:textStyle="italic"
+                    android:textColor="@color/md_theme_dark_background" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_background_subheadings"
+                    android:fontFamily="@font/merienda"
+                    android:gravity="center"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Instructions"
+                    android:textSize="16sp"
+                    android:textColor="@color/md_theme_dark_background"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/tvRecipeInstructions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/md_theme_dark_inverseSurface"
+                    android:elevation="6dp"
+                    android:gravity="center"
+                    android:fontFamily="sans-serif"
+                    android:padding="10dp"
+                    android:textSize="14sp"
+                    android:textStyle="italic"
                     android:textColor="@color/md_theme_dark_background" />
 
             </LinearLayout>
@@ -113,7 +174,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="60dp"
         android:contentDescription="add recipe"
-        android:src="@drawable/add" />
+        android:src="@drawable/add"
+        app:backgroundTint="#9FB4B6" />
 
     <LinearLayout
         android:layout_width="match_parent"

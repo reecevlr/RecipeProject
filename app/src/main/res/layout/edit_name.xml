@@ -9,7 +9,10 @@
         android:id="@+id/etEditName"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:backgroundTint="#22FFFFFF"
         android:ems="10"
         android:hint="Recipe Name"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#CBCACA" />
 </LinearLayout>

@@ -9,6 +9,8 @@
         android:id="@+id/etEditInstructions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#22FFFFFF"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#CBCACA"
         android:hint="Instruction 1\nInstruction 2\netc." />
-
 </LinearLayout>
