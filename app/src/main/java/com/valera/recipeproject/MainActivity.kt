@@ -17,6 +17,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var allRecipes: List<RecipeModelClass>
 
     private lateinit var tvRecipeName: TextView
+    private lateinit var tvRecipeIngredients: TextView
+    private lateinit var tvRecipeInstructions: TextView
 
     private lateinit var sharedPreferences: SharedPreferences
 
@@ -29,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         val btnFavorites = findViewById<ImageButton>(R.id.btnFavorites)
 
         tvRecipeName = findViewById(R.id.tvRecipeName)
+        tvRecipeIngredients = findViewById(R.id.tvRecipeIngredients)
+        tvRecipeInstructions = findViewById(R.id.tvRecipeInstructions)
 
         databaseHandler = DatabaseHandler(this)
         allRecipes = databaseHandler.viewRecipe()
@@ -93,5 +97,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun displayFeaturedRecipe(featuredRecipe: RecipeModelClass) {
         tvRecipeName.text = featuredRecipe.name
+        tvRecipeIngredients.text = featuredRecipe.ingredients.joinToString("\n")
+        tvRecipeInstructions.text = featuredRecipe.instructions
     }
 }

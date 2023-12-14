@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
@@ -117,7 +118,7 @@ class ViewRecipeDetails : AppCompatActivity() {
     }
 
     private fun showEditIngredientsDialog() {
-        val dialogBuilder = AlertDialog.Builder(this)
+        val dialogBuilder = AlertDialog.Builder(this, R.style.CustomAlertDialog)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.edit_ingredients, null)
 
@@ -144,7 +145,7 @@ class ViewRecipeDetails : AppCompatActivity() {
     }
 
     private fun showEditInstructionsDialog() {
-        val dialogBuilder = AlertDialog.Builder(this)
+        val dialogBuilder = AlertDialog.Builder(this, R.style.CustomAlertDialog)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.edit_instructions, null)
 
@@ -171,7 +172,7 @@ class ViewRecipeDetails : AppCompatActivity() {
     }
 
     private fun showEditNameDialog() {
-        val dialogBuilder = AlertDialog.Builder(this)
+        val dialogBuilder = AlertDialog.Builder(this, R.style.CustomAlertDialog)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.edit_name, null)
 
@@ -183,10 +184,15 @@ class ViewRecipeDetails : AppCompatActivity() {
         dialogBuilder.setPositiveButton("Save") { _, _ ->
             val newName = etEditName.text.toString()
 
-            val databaseHandler = DatabaseHandler(this)
-            databaseHandler.updateName(recipeId, newName)
+            if (newName != "") {
+                val databaseHandler = DatabaseHandler(this)
+                databaseHandler.updateName(recipeId, newName)
 
-            loadRecipeDetails(recipeId)
+                loadRecipeDetails(recipeId)
+            }
+            else {
+                Toast.makeText(this, "Error: Check input name!", Toast.LENGTH_SHORT).show()
+            }
         }
 
         dialogBuilder.setNegativeButton("Cancel") { dialogInterface, _ ->
