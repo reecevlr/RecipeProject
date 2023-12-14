@@ -12,7 +12,7 @@ Final Project for Mobile Programming I
   - [X] color palette
   - [X] text style
 
-- [ ] Back-end
+- [X] Back-end
   - [X] Featured Page
   - [X] AddRecipe
    - [X] Functionality
